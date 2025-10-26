@@ -24,6 +24,12 @@ export function loginUser(userData) {
   return instance.post("login", userData);
 }
 
+// 학습 노트 데이터를 조회하는 API
 export function fetchPosts() {
   return instance.get('posts');
+}
+
+// 학습 노트 데이터를 등록 API
+export function addPost(postData) {
+  return instance.post('posts', postData);
 }

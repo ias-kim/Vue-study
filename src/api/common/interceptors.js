@@ -1,5 +1,3 @@
-import { useUserStore } from "@/store/index";
-
 
 // src/api/interceptors.js
 export function setInterceptors(instance) {
@@ -10,7 +8,7 @@ export function setInterceptors(instance) {
 
     if (userStore.token) {
       // 서버가 Bearer 스킴을 기대하면 아래처럼:
-      config.headers.Authorization = `Bearer ${userStore.token}`
+      config.headers.Authorization = `${userStore.token}`
       // 만약 그냥 토큰만이면: config.headers.Authorization = userStore.token
     }
     return config

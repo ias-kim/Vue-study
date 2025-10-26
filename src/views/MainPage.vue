@@ -11,6 +11,9 @@
             ></PostListItem>
         </ul>
     </div>
+    <router-link to="/add" class="create-button">
+      <ion-icon name="add"></ion-icon>
+    </router-link>
   </div>
 </template>
 
@@ -28,7 +31,7 @@ async function fetchData() {
     isLoading.value = true;
     const { data } = await fetchPosts();
     isLoading.value = false;
-    postItems.value = data.posts
+    postItems.value = data.posts;
 }
 
 onMounted(() => {
