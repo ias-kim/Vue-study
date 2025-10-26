@@ -29,7 +29,6 @@ const username = ref('');
 const password = ref('');
 const nickname = ref('');
 const logMessage = ref('');
-
 function initForm() {
     username.value = '';
     password.value = '';

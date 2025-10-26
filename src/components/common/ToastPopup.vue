@@ -6,7 +6,15 @@
 
 <script>
 import bus from '@/utils/bus.js';
+// import { reactive, toRefs } from 'vue'
 
+// const user = reactive({
+//   name: '',
+//   age: 0,
+//   email: ''
+// })
+
+// const { name, age, email } = toRefs(user)
 let toastTimer;
 
 export default {

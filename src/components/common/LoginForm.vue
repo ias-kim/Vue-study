@@ -18,7 +18,8 @@
         <button
           :disabled="!password"
           type="submit"
-          class="btn"
+          class="btn disabled"
+          :class="!password ? 'disabled' : null"
         >
           로그인
         </button>
