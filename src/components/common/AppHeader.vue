@@ -1,7 +1,7 @@
 <template>
   <header>
     <div>
-      <router-link to="/" class="logo">
+      <router-link :to="logoLink" class="logo">
         TIL
       </router-link>
     </div>
@@ -22,11 +22,19 @@
 
 <script setup>
 import { useUserStore } from '@/store/index'
+import { computed } from 'vue';
 import {useRouter} from 'vue-router';
+import {deleteCookie} from '@/utils/cookies';
 const router = useRouter();
 const userStore = useUserStore()
+
+const logoLink = computed(() => userStore.isLogin ? '/main' : '/login');
+
 function logoutUser() {
     userStore.clearUsername();
+    userStore.clearToken();
+    deleteCookie('til_auth');
+    deleteCookie('til_user');
     router.push({name: 'Login'});
 }
 </script>

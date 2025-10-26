@@ -28,6 +28,9 @@ export const useUserStore = defineStore('user',{
         setToken(token) {
             this.token = token
         },
+        clearToken() {
+            this.token = "";
+        },
         async LOGIN(userData) {
             const { data } = await loginUser(userData);
             console.log(data.token);
