@@ -1,6 +1,6 @@
 <template>
   <div class="contents">
-    <h1 class="page-header">Create Post</h1>
+    <h1 class="page-header">Edit Post</h1>
     <div class="form-wrapper">
         <form class="form" @submit.prevent="submitForm">
             <div>
@@ -14,7 +14,7 @@
                     Contents must be less than Long
                 </p>
             </div>
-            <button type="submit" class="btn">Create</button>
+            <button type="submit" class="btn">Edit</button>
         </form>
         <p class="log">
             {{ logMessage }}
@@ -24,34 +24,45 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { addPost } from '@/api/posts'
-import { useRouter } from 'vue-router'; 
+import { computed, ref, onMounted } from 'vue';
+import { fetchPost, editPost } from '@/api/posts';
+import { useRoute, useRouter } from 'vue-router'; 
+const route = useRoute();
+const router = useRouter();
 const title = ref('');
 const content = ref('');
 const logMessage = ref('');
-const router = useRouter();
 
-const isContentsValid = computed(() => content.value.length < 200);
+const isContentsValid = computed(() => (content.value?.length || 0) <= 200);
 
 async function submitForm() {
+    const id = route.params.id
     try {
-        const response = await addPost({
+        await editPost(id, {
         title: title.value,
         content: content.value,
-        });
-        router.push({name: 'Main'})
-        console.log(response);
+    });
+        router.push('/main');
     } catch (error) {
-        console.log(error.response.data.message);
-        logMessage.value = error.response.data.message;
+        console.log(error);
+        logMessage.value = error;
     }
-
 }
+async function fetchData() {
+    const id = route.params.id;
+    const { data } = await fetchPost(id);
+    console.log(data);
+    title.value = data.title;
+    content.value = data.content;
+} 
+onMounted(() => {
+    fetchData()
+});
+
 </script>
 
 <style scoped>
-.form-wrapper .form {
+.form-wrapper .from {
     width: 100%;
 }
 .btn {
