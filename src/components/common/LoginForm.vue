@@ -31,7 +31,6 @@
 <script setup>
 import {ref} from 'vue';
 import { useRouter } from 'vue-router'; 
-import { loginUser } from '@/api/index';
 import { useUserStore } from '@/store/index' 
 // import validateEmail from '@/utils/validation';
 const router = useRouter();
@@ -54,21 +53,15 @@ async function submitForm() {
     const userData = {
         username: username.value,
         password: password.value
-    }
-    const { data } = await loginUser(userData);
-    console.log(data.token)
-    userStore.setToken(data.token);
-    userStore.setUsername(data.user.username);
+    };
+    await userStore.LOGIN(userData);
     router.push({ name: 'Main' });
-
-
     } catch (error) {
         console.log(error.response.data);
         logMessage.value = error.response.data;
     } finally {
         initForm();
     }
-
 }
 
 
