@@ -8,6 +8,8 @@
         </div>
         <div class="post-time">
             {{ postItem.createdAt }}
+            <ion-icon name="add"></ion-icon>
+            <ion-icon name="trash" @click="deleteItem"></ion-icon>
         </div>
     </li>
 </template>
@@ -18,7 +20,11 @@ const props = defineProps({
         type: Object,
         required: true,
     }
-})
+});
+
+function deleteItem() {
+
+}
 </script>
 
 <style>

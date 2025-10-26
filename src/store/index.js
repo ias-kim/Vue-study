@@ -5,7 +5,7 @@ import {
   saveAuthToCookie,
   saveUserToCookie,
 } from "@/utils/cookies";
-import { loginUser } from '@/api/index'
+import { loginUser } from '@/api/auth'
 
 export const useUserStore = defineStore('user',{
     // 반응형 데이터

@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { registerUser } from '@/api/index';
+import { registerUser } from '@/api/auth';
 
 const username = ref('');
 const password = ref('');

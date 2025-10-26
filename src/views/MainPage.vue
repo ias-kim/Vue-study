@@ -5,7 +5,7 @@
         <LoadingSpinner v-if="isLoading"></LoadingSpinner>
         <ul v-else>
             <PostListItem
-              v-for="postItem in PostItems"
+              v-for="postItem in postItems"
               :key="postItem._id"
               :postItem="postItem"
             ></PostListItem>
@@ -22,7 +22,7 @@ import { onMounted, ref } from 'vue';
 import PostListItem from '@/components/common/posts/PostListItem.vue';
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 
-import { fetchPosts } from '@/api/index';
+import { fetchPosts } from '@/api/posts';
 
 const postItems = ref([]);
 const isLoading = ref(false);

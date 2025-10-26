@@ -25,7 +25,7 @@
 
 <script setup>
 import { computed, ref } from 'vue';
-import { addPost } from '@/api/index'
+import { addPost } from '@/api/posts'
 const title = ref('');
 const content = ref('');
 const logMessage = ref('');
