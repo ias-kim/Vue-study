@@ -56,12 +56,11 @@ async function submitForm() {
         password: password.value
     }
     const { data } = await loginUser(userData);
-    console.log(data)
+    console.log(data.token)
+    userStore.setToken(data.token);
     userStore.setUsername(data.user.username);
     router.push({ name: 'Main' });
 
-    // console.log(data);
-    // logMessage.value = `${data.user.username}님 환영합니다`;
 
     } catch (error) {
         console.log(error.response.data);

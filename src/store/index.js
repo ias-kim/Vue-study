@@ -4,6 +4,7 @@ export const useUserStore = defineStore('user',{
     // 반응형 데이터
     state: () => ({
         username: '',
+        token: '',
     }),
     // 계산된 속성
     getters : {
@@ -16,6 +17,9 @@ export const useUserStore = defineStore('user',{
         },
         clearUsername() {
             this.username = '';
+        },
+        setToken(token) {
+            this.token = token
         }
     }
 
